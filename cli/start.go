@@ -21,7 +21,7 @@ func startCommand(t *core.Timetrace) *cobra.Command {
 	var options startOptions
 
 	start := &cobra.Command{
-		Use:   "start <PROJECT KEY> [+TAG1, +TAG2, ...]",
+		Use:   "start <PROJECT KEY> [+TAG1, +TAG2, +TAG3]",
 		Short: "Start tracking time",
 		Run: func(cmd *cobra.Command, args []string) {
 			projectKey := args[0]
