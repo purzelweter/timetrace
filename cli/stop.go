@@ -9,11 +9,15 @@ import (
 
 func stopCommand(t *core.Timetrace) *cobra.Command {
 	stop := &cobra.Command{
-		Use:   "stop",
+		Use:   "stop [<MESSAGE>]",
 		Short: "Stop tracking your time",
-		Args:  cobra.ExactArgs(0),
 		Run: func(cmd *cobra.Command, args []string) {
-			if err := t.Stop(); err != nil {
+			var message string
+			if len(args) > 0 {
+				message = args[0]
+			}
+
+			if err := t.Stop(message); err != nil {
 				out.Err("failed to stop tracking: %s", err.Error())
 				return
 			}

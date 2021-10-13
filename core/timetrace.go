@@ -165,7 +165,7 @@ func (t *Timetrace) breakTime(date time.Time) (time.Duration, error) {
 }
 
 // Stop stops the time tracking and marks the current record as ended.
-func (t *Timetrace) Stop() error {
+func (t *Timetrace) Stop(message string) error {
 	latestRecord, err := t.LoadLatestRecord()
 	if err != nil {
 		return err
@@ -177,6 +177,7 @@ func (t *Timetrace) Stop() error {
 
 	end := time.Now()
 	latestRecord.End = &end
+	latestRecord.Message = message
 
 	return t.SaveRecord(*latestRecord, true)
 }
